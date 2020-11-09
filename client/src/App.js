@@ -7,7 +7,7 @@ import "./styles.scss";
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={(props) =>
+    render={props =>
       localStorage.getItem("token") ? (
         <Component {...props} />
       ) : (
@@ -21,7 +21,11 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <Link to="/home">Home Page</Link>
+        <Link to="protected">Protected Page</Link>
         <Route exact path="/" component={Login} />
+        <Route path="/home" component={Home} />
+        <PrivateRoute path="/BubblePage" component={BubblePage} />
         {/* 
           Build a PrivateRoute component that will 
           display BubblePage when you're authenticated 
